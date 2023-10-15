@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- Inclua os arquivos CSS e JavaScript do VanillaCalendar -->
+    <link rel="stylesheet" href="agendamento.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página com Barra Superior</title>
+    <style>
+       .barra-superior {
+            display: flex;
+            align-items: center;
+        }
+
+        .texto {
+            flex-grow: 1; /* Ocupa o espaço disponível */
+            text-align: left;
+        }
+/* 
+        .calendar-assets {
+            
+        }
+
+        .calendar {
+            
+            
+        } */
+
+        .field {
+            display: flex;
+            align-items: center;
+        }
+
+        p{
+           margin-right: 10px;
+        }
+
+        
+        .btn-agendar{
+            margin-left: 235px;
+        }
+       
+        .principal {
+            display: flex; /* Use flexbox para dividir horizontalmente */
+        }
+
+        .esquerda {
+            flex: 1; /* A div esquerda ocupará 50% da largura */
+            padding: 10px; /* Adicione algum espaço entre as divs */
+            
+        }
+
+        .direita {
+            flex: 1; /* A div direita ocupará 50% da largura */
+            padding: 30px; /* Adicione algum espaço entre as divs */
+            
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="barra-superior">
+        <img class="logo" src="img/logo-menor.png" alt="Logo da empresa">
+        <img class="imagem" src="img/minha-foto.png" alt="Imagem redonda">
+        <div class="texto">
+            Bem-vindo(a),<br>
+            <?php echo $_SESSION['email'];?>
+        </div>
+    </div>
+    <div class="principal">
+    <div class="esquerda">
+    <h1 class="titulo">Horários disponíveis para Banho e Tosa</h1>
+    <form action="agendamento.php" method="POST" onsubmit="return setDate(this)">
+    <h1 id="currentDate"></h1>
+   
+    <div class="manha"><p>Manhã</p>
+        <div class="hora-selection">
+                    
+            <div id="horas">
+                <button class="hora-button" name="hora" value="08:00">8:00</button>
+                <button class="hora-button" name "hora" value="09:00">9:00</button>
+                <button class="hora-button" name="hora" value="10:00">10:00</button>
+                <button class="hora-button" name="hora" value="11:00">11:00</button>
+                
+            </div>
+    
+    <div class="tarde"><p>Tarde</p>
+        <div id="horas">
+            <button class="hora-button" name="hora" value="13:00">13:00</button>
+            <button class="hora-button" name="hora" value="14:00">14:00</button>
+            <button class="hora-button" name="hora" value="15:00">15:00</button>
+            <button class="hora-button" name="hora" value="16:00">16:00</button>
+            <button class="hora-button" name="hora" value="17:00">17:00</button>
+        </div>
+    </div>
+    <div class="calendar-assets">
+        <div class="field">
+            
+               
+                <input type="date" class="text-field" name="date" id="date" required style="display: none;">
+                
+
+                    
+        </div>
+    </div>
+                <button type="submit" class="btn-agendar" >Agendar</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    <div class="direita">
+    <div class="calendar" id="table">
+        <div class="header">
+            <div class="month" id="month-header"></div>
+            <div class="buttons">
+                <button class="icon" onclick="prevMonth()" title="Mês anterior" src="img\Voltar 1.svg"><i class="fas fa-chevron-left"></i></button>
+                <button class="icon" onclick="nextMonth()" title="Próximo mês" src="img\Voltar.svg"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+</div>
+    </div>
+    <!-- <script src="https://kit.fontawesome.com/812e771e48.js" crossorigin="anonymous"></script> -->
+
+<script>
+    const months = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro"
+];
+
+const weekdays = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+
+
+
+// Váriavel principal
+let date = new Date();
+
+// Função que retorna a data atual do calendário 
+function getCurrentDate(element, asString) {
+    if (element) {
+        if (asString) {
+            return element.textContent = weekdays[date.getDay()] + ' | Dia ' + date.getDate() + " | " + months[date.getMonth()];
+        }
+        return element.value = date.toISOString().substr(0, 10);
+    }
+    return date;
+}
+
+
+// Função principal que gera o calendário
+function generateCalendar() {
+
+    // Pega um calendário e se já existir o remove
+    const calendar = document.getElementById('calendar');
+    if (calendar) {
+        calendar.remove();
+    }
+
+    // Cria a tabela que será armazenada as datas
+    const table = document.createElement("table");
+    table.id = "calendar";
+
+    // Cria os headers referentes aos dias da semana
+    const trHeader = document.createElement('tr');
+    trHeader.className = 'weekends';
+    weekdays.map(week => {
+        const th = document.createElement('th');
+        const w = document.createTextNode(week.substring(0, 3));
+        th.appendChild(w);
+        trHeader.appendChild(th);
+    });
+
+    // Adiciona os headers na tabela
+    table.appendChild(trHeader);
+
+    //Pega o dia da semana do primeiro dia do mês
+    const weekDay = new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        1
+    ).getDay();
+
+    //Pega o ultimo dia do mês
+    const lastDay = new Date(
+        date.getFullYear(),
+        date.getMonth() + 1,
+        0
+    ).getDate();
+
+    let tr = document.createElement("tr");
+    let td = '';
+    let empty = '';
+    let btn = document.createElement('button');
+    let week = 0;
+
+    // Se o dia da semana do primeiro dia do mês for maior que 0(primeiro dia da semana);
+    while (week < weekDay) {
+        td = document.createElement("td");
+        empty = document.createTextNode(' ');
+        td.appendChild(empty);
+        tr.appendChild(td);
+        week++;
+    }
+
+    // Vai percorrer do 1º até o ultimo dia do mês
+    for (let i = 1; i <= lastDay;) {
+        // Enquanto o dia da semana for < 7, ele vai adicionar colunas na linha da semana
+        while (week < 7) {
+            td = document.createElement('td');
+            let text = document.createTextNode(i);
+            btn = document.createElement('button');
+            btn.className = "btn-day";
+            btn.addEventListener('click', function () { changeDate(this) });
+            week++;
+
+
+
+            // Controle para ele parar exatamente no ultimo dia
+            if (i <= lastDay) {
+                i++;
+                btn.appendChild(text);
+                td.appendChild(btn)
+            } else {
+                text = document.createTextNode(' ');
+                td.appendChild(text);
+            }
+            tr.appendChild(td);
+        }
+        // Adiciona a linha na tabela
+        table.appendChild(tr);
+
+        // Cria uma nova linha para ser usada
+        tr = document.createElement("tr");
+
+        // Reseta o contador de dias da semana
+        week = 0;
+    }
+    // Adiciona a tabela a div que ela deve pertencer
+    const content = document.getElementById('table');
+    content.appendChild(table);
+    changeActive();
+    changeHeader(date);
+    document.getElementById('date').textContent = date;
+    getCurrentDate(document.getElementById("currentDate"), true);
+    getCurrentDate(document.getElementById("date"), false);
+}
+
+// Altera a data atráves do formulário
+function setDate(form) {
+    let newDate = new Date(form.date.value);
+    date = new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate() + 1);
+    generateCalendar();
+    return false;
+}
+
+// Método Muda o mês e o ano do topo do calendário
+function changeHeader(dateHeader) {
+    const month = document.getElementById("month-header");
+    if (month.childNodes[0]) {
+        month.removeChild(month.childNodes[0]);
+    }
+    const headerMonth = document.createElement("h1");
+    const textMonth = document.createTextNode(months[dateHeader.getMonth()].substring(0, 3) + " " + dateHeader.getFullYear());
+    headerMonth.appendChild(textMonth);
+    month.appendChild(headerMonth);
+}
+
+// Função para mudar a cor do botão do dia que está ativo
+function changeActive() {
+    let btnList = document.querySelectorAll('button.active');
+    btnList.forEach(btn => {
+        btn.classList.remove('active');
+    });
+    btnList = document.getElementsByClassName('btn-day');
+    for (let i = 0; i < btnList.length; i++) {
+        const btn = btnList[i];
+        if (btn.textContent === (date.getDate()).toString()) {
+            btn.classList.add('active');
+        }
+    }
+}
+
+// Função que pega a data atual
+function resetDate() {
+    date = new Date();
+    generateCalendar();
+}
+
+// Muda a data pelo numero do botão clicado
+function changeDate(button) {
+    let newDay = parseInt(button.textContent);
+    date = new Date(date.getFullYear(), date.getMonth(), newDay);
+    generateCalendar();
+}
+
+// Funções de avançar e retroceder mês e dia
+function nextMonth() {
+    date = new Date(date.getFullYear(), date.getMonth() + 1, 1);
+    generateCalendar(date);
+}
+
+function prevMonth() {
+    date = new Date(date.getFullYear(), date.getMonth() - 1, 1);
+    generateCalendar(date);
+}
+
+
+function prevDay() {
+    date = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1);
+    generateCalendar();
+}
+
+function nextDay() {
+    date = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+    generateCalendar();
+}
+
+document.onload = generateCalendar(date);
+
+// Função para enviar a data selecionada para o PHP
+function setDate(form) {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Impede o envio do formulário padrão
+
+            let newDate = new Date(form.date.value);
+            date = new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate() + 1);
+
+            // Enviar a data para o PHP usando AJAX
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'agendamento.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    alert(xhr.responseText); // Exibir a resposta do PHP
+                    generateCalendar();
+                }
+            };
+            xhr.send('date=' + encodeURIComponent(form.date.value));
+        });
+    }
+
+    // Chame a função generateCalendar para inicializar o calendário
+    generateCalendar(date);
+
+// Adicione um ouvinte de eventos para os botões de hora
+const horaButtons = document.querySelectorAll('.hora-button');
+horaButtons.forEach(button => {
+    button.addEventListener('click', function () {
+        const selectedHour = this.value;
+        document.querySelector('input[name="hora"]').value = selectedHour;
+    });
+});
+
+// Modifique a função agendar para pegar a data e a hora selecionada
+function agendar(form) {
+    const selectedDate = document.getElementById("date").value;
+    const selectedHour = document.getElementById("hora").value;
+
+    if (!selectedDate || !selectedHour) {
+        alert("Por favor, selecione uma data e hora antes de agendar.");
+        return false;
+    }
+
+    // Combine a data e a hora em uma única string
+    const dataHora = selectedDate + ' ' + selectedHour;
+
+    // Preencha os campos ocultos com a data e a hora selecionada
+    const hiddenDate = document.createElement("input");
+    hiddenDate.type = "hidden";
+    hiddenDate.name = "date";
+    hiddenDate.value = dataHora;
+    form.appendChild(hiddenDate);
+
+    return true; // Permite que o formulário seja submetido
+}
+
+
+
+
+
+</script>
+</body>
+</html>

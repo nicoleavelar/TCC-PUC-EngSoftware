@@ -1,0 +1,89 @@
+ body {
+            margin: 0;
+            padding: 0;
+            background-color: #312E38;
+        }
+
+        .barra-superior {
+            height: 100px;
+            background-color: #28262E;
+            display: flex;
+            align-items: center;
+            padding-left: 240px;
+        }
+
+        .logo {
+            width: 120px;
+        }
+
+        .imagem {
+            width: 60px; /* Largura da imagem */
+            height: 60px; /* Altura da imagem */
+            margin-left: 600px;
+            border-radius: 50%; /* Para tornar a imagem redonda */
+        }
+
+        .texto {
+            margin-left: 10px; /* Espaço entre a imagem e o texto */
+        }
+
+        .titulo{
+            color: var(--White, #F4EDE8);
+font-family: Roboto Slab;
+font-size: 36px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+        }
+        .aseguir{
+            color: var(--Gray, #999591);
+font-family: Roboto Slab;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+        }
+
+        .manha{
+            color: var(--Gray, #999591);
+font-family: Roboto Slab;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+        }
+
+        .tarde{
+            color: var(--Gray, #999591);
+font-family: Roboto Slab;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+        }
+
+        .div-container {
+            display: flex;
+            flex-wrap: wrap; /* Permite que as divs sejam quebradas em várias linhas */
+            justify-content: center; /* Centraliza horizontalmente as divs */
+            gap: 20px; /* Espaço entre as divs */            
+            margin-top: 60px;
+        }
+        
+        /* Estilo para as novas divs dentro do contêiner */
+        .nova-div {
+            width: 520px; /* 50% de largura, menos o espaço entre as divs */
+            height: 92px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            text-align: left;
+            border-radius: 10px;
+            background: var(--Shape, #3E3B47);
+            margin-bottom: 20px;
+        }
+
+        .esquerda{
+            padding-left: 240px;
+        }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- Inclua os arquivos CSS e JavaScript do VanillaCalendar -->
+    <link rel="stylesheet" href="agendamento.css">
+    <link rel="stylesheet" href="build/vanilla-calendar.min.css">
+    <script src="build/vanilla-calendar.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página com Barra Superior</title>
+</head>
+<body>
+    <div class="barra-superior">
+        <img class="logo" src="caminho-para-sua-logo.png" alt="Logo da empresa">
+        <img class="imagem" src="img/minha-foto.png" alt="Imagem redonda">
+        <div class="texto">
+            Bem-vindo(a),<br>
+            Nicole
+        </div>
+    </div>
+    <h1>Horários disponíveis para Banho e Tosa</h1>
+    <p>Manhã</p>
+    <p>Tarde</p>
+
+    <!-- Crie um elemento para exibir o calendário -->
+    <div id="vanilla-calendar">
+        <script>
+            const calendar = new VanillaCalendar('#vanilla-calendar', {
+                // Options
+            });
+            calendar.init();
+        </script>
+    </div>
+
+    <!-- Coloque o campo de entrada oculto dentro de um formulário -->
+    <form id="dateForm" method="post" action="agendamento.php">
+        <input type="hidden" id="selectedDate" name="selectedDate">
+
+        <button id="salvarButton" type="button">Salvar</button>
+    </form>
+
+    <script>
+        // Adicione o evento de clique ao botão "Salvar"
+        document.getElementById('salvarButton').addEventListener('click', function() {
+            // Obtenha a data selecionada do calendário (VanillaCalendar)
+            const selectedDateElement = document.querySelector('.vcal-date--selected');
+            
+            if (selectedDateElement) {
+                const selectedDate = selectedDateElement.dataset.date;
+                
+                // Atribua a data selecionada ao campo de entrada oculto
+                document.getElementById('selectedDate').value = selectedDate;
+                
+                // Submeta o formulário
+                document.getElementById('dateForm').submit();
+            } else {
+                alert('Selecione uma data antes de salvar.');
+            }
+        });
+    </script>
+
+    <!-- Resto do conteúdo da página aqui -->
+</body>
+</html>

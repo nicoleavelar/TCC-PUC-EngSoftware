@@ -1,0 +1,179 @@
+/* Reset de estilos para remover margens e preenchimentos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto Slab", Arial, sans-serif;
+    background-color: #312E38; /* Define a cor de fundo como #312E38 */
+    margin: 0;
+    overflow: hidden; /* Evita que a imagem de fundo crie barras de rolagem horizontais */
+}
+
+.background-container {
+    background-image: url('img/background-cadastro.jpg'); /* Substitua pelo caminho da sua imagem de fundo */
+    background-size: 780px 740px; /* Define as dimensões da imagem */
+    background-repeat: no-repeat;
+    background-position: 0px; /* Move a imagem para as coordenadas X: 660 e Y: 0 */
+    height: 105vh;
+    width: 100%; /* Ocupa toda a largura da tela */
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+    position: absolute;
+    top: 0px;
+   
+}
+
+.login-container {
+    background-color:#312E38; /* Adiciona um fundo branco semi-transparente */
+    padding: 20px;
+    border-radius: 10px;
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    left: 960px;
+    
+   
+}
+
+h2 {
+    margin-bottom: 20px;  
+    color: var(--White, #F4EDE8);
+    text-align: center;
+    font-family: Roboto Slab;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  
+    flex-shrink: 0;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 340px; /* Define a largura como 340 pixels */
+    height: 56.09px; /* Define a altura como 56.09 pixels */
+    padding: 10px;
+    background-color: #232129; /* Define a cor de fundo como #232129 */
+    color: #666360; /* Define a cor do texto como branco */
+    border: 1px solid #232129; /* Define a borda como #232129 */
+    border-radius: 5px;
+    margin-top: 5px;
+    font-size: 16px;
+    font-family: Roboto Slab;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    
+}
+
+button {
+    width: 340px; /* Define a largura do botão como 340 pixels */
+    height: 56.09px; /* Define a altura do botão como 56.09 pixels */
+    padding: 10px;
+    background-color: #CD92B4; /* Define a cor de fundo do botão como #CD92B4 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+    color: var(--Background, #312E38);
+    text-align: center;
+    font-family: Roboto Slab;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+button:hover {
+    background-color: #A56B8E; /* Cor quando o botão é hover */
+}
+
+.forgot-password {
+    margin-top: 10px; /* Adiciona espaço de 50px acima do texto "Esqueci minha senha" */
+}
+.forgot-link {
+    color: var(--White, #F4EDE8);
+    text-align: center;
+    font-family: Roboto Slab;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none; /* Remove o sublinhado */
+    
+}
+
+.voltar-pagina {
+    margin-top: 50px; /* Adiciona espaço de 50px acima do texto "Esqueci minha senha" */
+}
+.voltar-login {
+    color: #F4EDE8;
+    text-align: center;
+    font-family: Roboto Slab;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none; /* Remove o sublinhado */
+    
+}
+.user-type-links {
+    text-align: center; /* Centraliza os links horizontalmente */
+    margin-top: 0px; /* Adiciona espaço acima dos links */
+    margin-bottom: 12px; /* Adiciona espaço acima dos links */
+    
+    
+}
+
+.user-link {
+    text-decoration: none;
+    color: #F4EDE8;
+    margin: 0 10px; /* Adiciona margem entre os links para separá-los */
+    font-weight: bold;
+    color: var(--White, #F4EDE8);
+text-align: center;
+font-family: Roboto Slab;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+
+}
+
+.user-link {
+    color: #F4EDE8;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s, text-decoration 0.3s; /* Adiciona transição suave */
+}
+
+/* Adicione o seguinte estilo para os links quando passar o mouse sobre eles */
+
+.user-link:hover {
+    color: #999591; /* Define a cor ao passar o mouse como #999591 */
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}

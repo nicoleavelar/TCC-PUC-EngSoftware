@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="agenda.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página com Barra Superior</title>
+</head>
+<body>
+    <div class="barra-superior">
+        <img class="logo" src="img/logo-menor.png" alt="Logo da empresa">
+        <img class="imagem" src="img/groom1.png" alt="Imagem redonda">
+        <div class="texto">
+            Bem vindo (a),<br>
+            Nicole
+        </div>
+    </div>
+   <div class="esquerda">
+    <h1 class="titulo">Horários agendados</h1>
+    <h1 id="currentDate"></h1>
+
+    <div class="aseguir">
+        <p> Atendimentos a seguir: </p>
+
+        
+            
+               
+                                     
+                    <div class="agora">
+                        
+                        <?php
+                        if (!empty($primeiroAgendamento)) {
+                            echo "Hora: " . $primeiroAgendamento . "<br>";
+                        } else {
+                            echo "Nenhum registro encontrado.";
+                        }
+                        ?>
+                    </div>
+
+                    <div class="manha"><p>Manhã</p>
+                        <div class="div-container" id="dados-container"></div>
+                      
+                        <?php
+                        foreach ($registros as $registro) {
+                            
+
+                            echo '<div class="nova-div">';
+                            echo '<img src="img/Horário.svg">' . $registro['hora'] . "<br>";
+                            
+                            
+                            
+                            echo 'ID do Usuário: ' . $registro['id_usuario'] . "<br>";
+                            echo '</div>';
+                            
+                        }
+?>
+
+                        
+                
+                
+                    </div>
+                </div>
+         
+        </div>
+    </div>
+
+
+   
+
+
+    <div class="tarde"><p>Tarde</p>
+    </div>
+    </div>
+
+    <div class="direita">
+
+
+    </div>
+</div>
+</body>
+</html>

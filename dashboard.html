@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="dashboard.css">
+</head>
+<body>
+    <div class="div-principal">
+        <div class="div-superior">
+            <img class="logo" src="img/logo-menor.png" alt="Logo da Empresa">
+            <img class="perfil" src="img/minha-foto.png" alt="Imagem de Perfil">
+            <div class="texto">
+                Bem-vindo(a),<br>
+                <?php echo $_SESSION['email'];?>
+            </div>
+        </div>
+        <h2> Groomers</h2>
+        <h3>Selecione o estabelecimento</h3>
+        <div class="div-container" id="dados-container">
+            <?php foreach ($dados as $registro): ?>
+                <div class="nova-div">
+                    <img src="data:image/jpeg;base64,<?php echo $registro['imagem_base64']; ?>" class="img" alt="Imagem">                    
+                    <div class="nome-descricao">
+                        <p class="nome"><a href="agendamento.php?nome=<?php echo $registro['nome']; ?>"><?php echo $registro['nome']; ?></a></p>
+                        <p class="descricao"><?php echo $registro['descricao']; ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</body>
+</html>
