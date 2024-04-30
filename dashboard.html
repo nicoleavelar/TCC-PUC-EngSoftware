@@ -1,32 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <!-- Inclua os arquivos CSS e JavaScript do VanillaCalendar -->
+    <link rel="stylesheet" href="dashboard.css">
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="dashboard.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="dashboard.css" />
+    <title>Estabelecimentos disponíveis</title>
 </head>
 <body>
     <div class="div-principal">
         <div class="div-superior">
-            <img class="logo" src="img/logo-menor.png" alt="Logo da Empresa">
-            <img class="perfil" src="img/minha-foto.png" alt="Imagem de Perfil">
+            <img class="logo" src="img/logo-menor.png" alt="Logo da Empresa" />
+            <img class="perfil" src="img/minha-foto.png" alt="Imagem de Perfil" />
             <div class="texto">
-                Bem-vindo(a),<br>
+                Bem-vindo(a),<br />
                 <?php echo $_SESSION['email'];?>
             </div>
+            <div class="logout">
+                <img id="logoutBtn" class="logout-icon" src="img/logout-9.png" alt="Logout" />
+            </div>
         </div>
-        <h2> Groomers</h2>
+        <div class="barra-busca">
+       
+        <h2>Groomers</h2>
+        <input type="text" class="busca-input" id="filtro" placeholder="Buscar">
+        </div>
         <h3>Selecione o estabelecimento</h3>
+        <!-- Campo de busca -->
+        
         <div class="div-container" id="dados-container">
+            <!-- Lista de estabelecimentos -->
             <?php foreach ($dados as $registro): ?>
-                <div class="nova-div">
-                    <img src="data:image/jpeg;base64,<?php echo $registro['imagem_base64']; ?>" class="img" alt="Imagem">                    
-                    <div class="nome-descricao">
-                        <p class="nome"><a href="agendamento.php?nome=<?php echo $registro['nome']; ?>"><?php echo $registro['nome']; ?></a></p>
-                        <p class="descricao"><?php echo $registro['descricao']; ?></p>
-                    </div>
+            <div class="nova-div">
+                <img src="data:image/jpeg;base64,<?php echo $registro['imagem_base64']; ?>" class="img" alt="Imagem" />
+                <div class="nome-descricao">
+                    <p class="nome">
+                        <a href="agendamento.php?id_groomer=<?php echo $registro['id_groomer']; ?>">
+                            <?php echo $registro['nome']; ?>
+                        </a>
+                    </p>
+                    <p class="descricao"><?php echo $registro['descricao']; ?></p>
                 </div>
+            </div>
             <?php endforeach; ?>
         </div>
     </div>
+
+    <script>
+     document.getElementById('filtro').addEventListener('input', function() {
+    const filtro = this.value.toLowerCase(); // Convertendo o texto do filtro para minúsculas
+    const divs = document.querySelectorAll('.nova-div'); // Selecionando todas as divs dos estabelecimentos
+    let encontrouResultado = false; // Variável para verificar se encontrou algum resultado correspondente
+
+    divs.forEach(div => {
+        const nome = div.querySelector('.nome').innerText.toLowerCase(); // Obtendo o nome do estabelecimento em minúsculas
+
+        // Verificando se o nome do estabelecimento contém o filtro
+        if (nome.includes(filtro)) {
+            div.style.display = 'block'; // Exibindo a div se o filtro corresponder
+            encontrouResultado = true; // Marcando que encontrou um resultado
+        } else {
+            div.style.display = 'none'; // Ocultando a div se o filtro não corresponder
+        }
+    });
+
+    // Verificando se não encontrou nenhum resultado correspondente
+    if (!encontrouResultado) {
+        const mensagem = document.createElement('p'); // Criando um elemento de parágrafo para a mensagem
+        mensagem.textContent = 'Nenhum resultado encontrado.'; // Texto da mensagem
+        document.getElementById('dados-container').appendChild(mensagem); // Adicionando a mensagem ao container
+    } else {
+        // Removendo a mensagem se houver algum resultado correspondente
+        const mensagem = document.querySelector('#dados-container p');
+        if (mensagem) {
+            mensagem.remove();
+        }
+    }
+});
+
+document.getElementById('logoutBtn').addEventListener('click', function() {
+    // Encerra a sessão
+    window.location.href = 'logout.php';
+});
+
+    </script>
 </body>
 </html>

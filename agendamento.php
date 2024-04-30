@@ -30,7 +30,7 @@ if (isset($_POST['date']) && isset($_POST['hora'])) {
     $date = $_POST['date'];
     $hora = $_POST['hora'];
 } else {
-    echo "A data ou a hora não foram enviadas no formulário.";
+    echo '<div style="margin-left:500px;color:#f4ede8;font-family: Roboto Slab;font-size: 18px; font-weight: 400;">Selecione data e hora.</div>';
     exit();
 }
 
@@ -42,18 +42,29 @@ $sqlVerificar = "SELECT * FROM agendamento WHERE data = '$dataHora'";
 $resultVerificar = $conn->query($sqlVerificar);
 
 if ($resultVerificar->num_rows > 0) {
-    echo "A data e hora já estão agendadas por outro usuário.";
+    echo '<div style="margin-left:400px;color:#f4ede8;font-family: Roboto Slab;font-size: 18px; font-weight: 400;">A data e hora já estão agendadas por outro usuário.</div>';
 } else {
     // Obtenha o ID do usuário da sessão
     $idUsuario = $_SESSION['id'];
-
-    // Insira o novo agendamento para o usuário atual
-    $sqlInserir = "INSERT INTO agendamento (data, id_usuario) VALUES ('$dataHora', $idUsuario)";
     
-    if ($conn->query($sqlInserir) === TRUE) {
-        echo "Data e hora agendadas com sucesso!";
+    // Obtenha o id_groomer do estabelecimento do usuário
+    $sqlGroomer = "SELECT id_groomer FROM estabelecimento WHERE id = $idUsuario";
+    $resultGroomer = $conn->query($sqlGroomer);
+    
+    if ($resultGroomer->num_rows > 0) {
+        $row = $resultGroomer->fetch_assoc();
+        $idGroomer = $row['id_groomer'];
+        
+        // Insira o novo agendamento para o usuário atual com o id_estabelecimento correto
+        $sqlInserir = "INSERT INTO agendamento (data, id_usuario, id_estabelecimento) VALUES ('$dataHora', $idUsuario, $idGroomer)";
+        
+        if ($conn->query($sqlInserir) === TRUE) {
+            echo '<div style="margin-left:450px;color:#f4ede8;font-family: Roboto Slab;font-size: 18px; font-weight: 400;">Data e hora agendadas com sucesso!</div>';
+        } else {
+            echo "Erro ao agendar a data e hora: " . $conn->error;
+        }
     } else {
-        echo "Erro ao agendar a data e hora: " . $conn->error;
+        echo "Erro ao obter o id_groomer do estabelecimento.";
     }
 }
 

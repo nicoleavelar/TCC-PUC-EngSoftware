@@ -22,8 +22,20 @@ if (!$conexao) {
     die('Erro na conexão com o banco de dados: ' . mysqli_connect_error());
 }
 
+
+// Consulta para obter o id_groomer do usuário logado
+$consulta_id_groomer = "SELECT id_groomer FROM estabelecimento WHERE id = {$_SESSION['id']}";
+$resultado_id_groomer = mysqli_query($conexao, $consulta_id_groomer);
+
+if ($resultado_id_groomer && mysqli_num_rows($resultado_id_groomer) > 0) {
+    $dados_groomer = mysqli_fetch_assoc($resultado_id_groomer);
+    $_SESSION['id_groomer'] = $dados_groomer['id_groomer'];
+} else {
+    // Caso não encontre o id_groomer, faça algo para lidar com essa situação
+}
+
 // Passo 2: Executar uma consulta SQL para buscar todos os registros
-$consulta = "SELECT id, nome, descricao, img FROM estabelecimento";
+$consulta = "SELECT id, nome, descricao, img, id_groomer FROM estabelecimento";
 $resultado = mysqli_query($conexao, $consulta);
 
 if (!$resultado) {

@@ -1,50 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Login</title>
-    <link rel="stylesheet" href="cadastro.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="cadastro.css" />
+  </head>
+  <body>
     <div class="background-container">
-        <div class="login-container">
-            <img src="img/logo.png" alt="Logo" width="268" height="250">
-            <div class="user-type-links">
-                <a href="cadastro.php?tipo=cliente" class="user-link">Sou cliente</a>
-                <a href="cadastro.php?tipo=groomer" class="user-link">Sou groomer</a>
-            </div>
-            <form id="CadastroForm" action="cadastro.php" method="POST">
-                <div class="input-container">
-                   
-                    <input type="text" name="nome" id="nome" placeholder="Nome" required>
-                </div>
-                <div class="input-container">
-                   
-                    <input type="email" name="email" id="email" placeholder="E-mail" required>
-                </div>
-                <div class="input-container">
-                  
-                    <input type="password" name="senha" id="senha" placeholder="Senha" required>
-                </div>
-                <button type="submit">Cadastrar</button>
-                <div id="erro-msg" style="color: var(--White, #F4EDE8);
-                text-align: center;
-                font-family: Roboto Slab;
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: normal;"></div>
-            </form>
-            
-
-           
-
-            <div class="voltar-pagina">
-                <a href="login.php" class="voltar-login">Voltar para login</a>
-            </div>
+      <div class="login-container">
+        <img src="img/logo.png" alt="Logo" width="268" height="250" />
+        <div class="user-type-links">
+          <a href="cadastro.php?tipo=cliente" class="user-link">Sou cliente</a>
+          <a href="cadastro.php?tipo=groomer" class="user-link">Sou groomer</a>
         </div>
+        <form id="CadastroForm" action="cadastro.php" method="POST">
+          <div class="input-container">
+            <input
+              type="text"
+              name="nome"
+              id="nome"
+              placeholder="Nome"
+              required
+            />
+          </div>
+          <div class="input-container">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="E-mail"
+              required
+            />
+          </div>
+          <div class="input-container">
+            <input
+              type="password"
+              name="senha"
+              id="senha"
+              placeholder="Senha"
+              required
+            />
+          </div>
+          <button type="submit">Cadastrar</button>
+          <div
+            id="erro-msg"
+            style="
+              color: var(--White, #f4ede8);
+              text-align: center;
+              font-family: Roboto Slab;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+            "
+          ></div>
+        </form>
+
+        <div class="voltar-pagina">
+          <a href="login.php" class="voltar-login">Voltar para login</a>
+        </div>
+      </div>
     </div>
-    
-</body>
+  </body>
 </html>

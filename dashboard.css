@@ -1,138 +1,169 @@
 body {
-    margin: 0;
-    padding: 0;
-    overflow: auto;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
 }
 
 /* Estilo para a div principal */
 .div-principal {
-    width: 100%;
-    height: 100vh;
-    background-color: #312E38;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background-color: #312e38;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Estilo para a div superior */
 .div-superior {
-    height: 100px;
-    background-color: #28262E;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    padding: 0 20px; /* Adicionei padding para espaço à esquerda e direita */
+  height: 100px;
+  background-color: #28262e;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 20px; /* Adicionei padding para espaço à esquerda e direita */
 }
 
 /* Estilo para a logo */
 .logo {
-    width: 120px; /* Defina o tamanho desejado para a logo */
-    height: auto;
-    margin-right: 20px; /* Espaço à direita da logo */
-    margin-left: 230px;
+  width: 120px; /* Defina o tamanho desejado para a logo */
+  height: auto;
+  margin-right: 20px; /* Espaço à direita da logo */
+  margin-left: 230px;
 }
 
 /* Estilo para a imagem de perfil */
 .perfil {
-    width: 60px; /* Defina o tamanho desejado para a imagem de perfil */
-    height: 60px;
-    border-radius: 50%; /* Para criar uma imagem de perfil circular */
-    margin-left: 600px; /* Coloca a imagem à direita da div superior */
+  width: 60px; /* Defina o tamanho desejado para a imagem de perfil */
+  height: 60px;
+  border-radius: 50%; /* Para criar uma imagem de perfil circular */
+  margin-left: 600px; /* Coloca a imagem à direita da div superior */
 }
 
 /* Estilo para o texto "Bem Vindo (a)" */
 .bem-vindo {
-    margin-right: 10px; /* Espaço entre a imagem de perfil e o texto */
-    margin-left: 15px;
+  margin-right: 10px; /* Espaço entre a imagem de perfil e o texto */
+  margin-left: 15px;
+  color: var(--White, #999591);
 }
 
 /* Estilo para o texto "Nicole Avelar" */
-.nome a{
-color: var(--White, #F4EDE8);
-font-family: Roboto Slab;
-font-size: 24px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-text-decoration: none;
- 
+.nome a {
+  color: #f4ede8;
+  font-family: Roboto Slab;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration: none;
 }
 
-.descricao{
-color: var(--Gray, #999591);
-font-family: Roboto Slab;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+.descricao {
+  color: var(--Gray, #999591);
+  font-family: Roboto Slab;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 /* Estilo para o contêiner das divs nova-div */
 .div-container {
-    display: flex;
-    flex-wrap: wrap; /* Permite que as divs sejam quebradas em várias linhas */
-    justify-content: center; /* Centraliza horizontalmente as divs */
-    gap: 10px; /* Espaço entre as divs */
-    
-    margin-top: 60px;
+  display: flex;
+  flex-wrap: wrap; /* Permite que as divs sejam quebradas em várias linhas */
+  justify-content: center; /* Centraliza horizontalmente as divs */
+  gap: 10px; /* Espaço entre as divs */
+
+  margin-top: 60px;
 }
 
 /* Estilo para as novas divs dentro do contêiner */
 .nova-div {
-    width: 520px; /* 50% de largura, menos o espaço entre as divs */
-    height: 112px;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    text-align: left;
-    border-radius: 10px;
-    background: var(--Shape, #3E3B47);
+  width: 520px; /* 50% de largura, menos o espaço entre as divs */
+  height: 112px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-align: left;
+  border-radius: 10px;
+  background: var(--Shape, #3e3b47);
 }
 
 /* Estilo para as imagens */
 .nova-div img {
-    width: 85px; /* Defina o tamanho desejado para a imagem de perfil */
-    height: 85px;
-    border-radius: 50%; /* Para criar uma imagem de perfil circular */
-    margin-left: 10px;
+  width: 85px; /* Defina o tamanho desejado para a imagem de perfil */
+  height: 85px;
+  border-radius: 50%; /* Para criar uma imagem de perfil circular */
+  margin-left: 10px;
 }
 
 .nome-descricao {
-    display: flex;
-    flex-direction: column;
-    margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
 }
 
-h2{
-    color: var(--White, #F4EDE8);
-    font-family: Roboto Slab;
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    margin-left: 245px;
-    margin-top: 50px;
+h2 {
+  color: var(--White, #f4ede8);
+  font-family: Roboto Slab;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 245px;
+  margin-top: 50px;
+  
 }
-p{
-    
-color: var(--White, #F4EDE8);
-font-family: Roboto Slab;
-font-size: 18px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-}
-
-h3{
-color: var(--White, #F4EDE8);
-font-family: Roboto Slab;
-font-size: 28px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-margin-left: 245px;
-margin-top: 5px;
+p {
+  color: var(--White, #f4ede8);
+  font-family: Roboto Slab;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
+h3 {
+  color: var(--White, #f4ede8);
+  font-family: Roboto Slab;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 245px;
+  margin-top: 5px;
+}
+
+.logout-icon {
+  margin-left: 5px;
+  margin-right: 10px; /* Espaçamento entre o ícone e o texto */
+  width: 25px; /* Ajuste conforme necessário */
+  height: auto; /* Ajuste conforme necessário */
+}
 .texto {
-    margin-left: 10px; /* Espaço entre a imagem e o texto */
+  margin-left: 10px; /* Espaço entre a imagem e o texto */
+  color: var(--White, #999591);
+}
+
+
+.busca-input {
+    width: 250px; /* Define a largura como 340 pixels */
+  height: 30.09px; /* Define a altura como 56.09 pixels */
+  padding: 10px;
+  background-color: #232129; /* Define a cor de fundo como #232129 */
+  color: #666360; /* Define a cor do texto como branco */
+  border: 1px solid #232129; /* Define a borda como #232129 */
+  border-radius: 50px;
+  margin-top: 5px;
+  margin-left: 550px;
+  font-size: 16px;
+  font-family: Roboto Slab;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  
+}
+.barra-busca {
+    display: flex; /* Definindo o display como flex para alinhar os elementos na mesma linha */
+    align-items: center; /* Alinhando verticalmente ao centro */
 }

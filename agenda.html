@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="agenda.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página com Barra Superior</title>
+    
+    <title>Meus agendamentos</title>
 </head>
 <body>
     <div class="barra-superior">
@@ -12,70 +13,90 @@
         <img class="imagem" src="img/groom1.png" alt="Imagem redonda">
         <div class="texto">
             Bem vindo (a),<br>
-            Nicole
+            <?php echo $email; ?>
         </div>
+        <div class="logout">
+            <img id="logoutBtn" class="logout-icon" src="img/logout-9.png" alt="Logout">
+            </div>
     </div>
-   <div class="esquerda">
-    <h1 class="titulo">Horários agendados</h1>
-    <h1 id="currentDate"></h1>
+    <div class="esquerda">
+        <h1 class="titulo">Horários agendados</h1>
+        <h1 id="currentDate"></h1>
 
-    <div class="aseguir">
-        <p> Atendimentos a seguir: </p>
-
+<script>
+    function formatarData(data) {
+        const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+        const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
         
-            
-               
-                                     
-                    <div class="agora">
-                        
-                        <?php
-                        if (!empty($primeiroAgendamento)) {
-                            echo "Hora: " . $primeiroAgendamento . "<br>";
-                        } else {
-                            echo "Nenhum registro encontrado.";
-                        }
-                        ?>
-                    </div>
+        const diaSemana = diasSemana[data.getDay()];
+        const dia = data.getDate();
+        const mes = meses[data.getMonth()];
+        
+        return `${diaSemana} | Dia ${dia} | ${mes}`;
+    }
 
-                    <div class="manha"><p>Manhã</p>
-                        <div class="div-container" id="dados-container"></div>
-                      
-                        <?php
-                        foreach ($registros as $registro) {
-                            
+    function exibirDataAtual() {
+        const elementoData = document.getElementById('currentDate');
+        const dataAtual = new Date();
+        const dataFormatada = formatarData(dataAtual);
+        elementoData.textContent = dataFormatada;
+    }
 
-                            echo '<div class="nova-div">';
-                            echo '<img src="img/Horário.svg">' . $registro['hora'] . "<br>";
-                            
-                            
-                            
-                            echo 'ID do Usuário: ' . $registro['id_usuario'] . "<br>";
-                            echo '</div>';
-                            
-                        }
-?>
+    exibirDataAtual();
+</script>
 
-                        
-                
-                
-                    </div>
-                </div>
-         
+<div class="manha">
+    <p>Manhã</p>
+    <span class="linha">____________________________________________________</span>
+    <div class="div-container" id="dados-container">
+        <?php
+        foreach ($registros_manha as $registro) {
+            echo '<div class="nova-div">';
+            echo '<div class="item-container">';
+            echo '<img class="horario-icon" src="img/Horário.svg">';
+            echo '<span class="hora">' . $registro['hora'] . '</span><br>';
+            echo '</div>';
+            echo '<div class="item-container">';
+            echo '<div class="info-container">';
+            echo '<span class="nome">' . $registro['nome'] . '</span><br>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+        }
+        ?>
+    </div>
+</div>
+
+        <div class="tarde"><p>Tarde</p>
+            <span class="linha">____________________________________________________</span>
+            <div class="div-container" id="dados-container">
+                <?php
+                foreach ($registros_tarde as $registro) {
+                    echo '<div class="nova-div">';
+                        echo '<div class="item-container">';
+                        echo '<img class="horario-icon" src="img/Horário.svg">';
+                        echo '<span class="hora">' . $registro['hora'] . '</span><br>';
+                        echo '</div>';
+                        echo '<div class="item-container">';
+                        echo '<div class="info-container">';
+                        echo '<span class="nome">' . $registro['nome'] . '</span><br>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                }
+                ?>
+            </div>
         </div>
-    </div>
-
-
-   
-
-
-    <div class="tarde"><p>Tarde</p>
-    </div>
     </div>
 
     <div class="direita">
-
-
+        <!-- Conteúdo da div direita -->
     </div>
-</div>
+    <script>
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            // Encerra a sessão
+            window.location.href = 'logout.php';
+        });
+    </script>
 </body>
 </html>
